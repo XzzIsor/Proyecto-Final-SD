@@ -4,17 +4,28 @@
  */
 package views;
 
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import models.Admin;
+import servicios.AdminServices;
+
 /**
  *
  * @author angiecarolinagomezacosta
  */
 public class JFrameLogin extends javax.swing.JFrame {
 
+    AdminServices adminServices = new AdminServices();
+    ArrayList<Admin> adminList = new ArrayList<>();
+
     /**
      * Creates new form JFrameLogin
      */
     public JFrameLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -96,6 +107,11 @@ public class JFrameLogin extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnLogin.setText("Ingresar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCenLayout = new javax.swing.GroupLayout(jPanelCen);
         jPanelCen.setLayout(jPanelCenLayout);
@@ -143,9 +159,36 @@ public class JFrameLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFPasswordActionPerformed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        String pass = jTFPassword.getText();
+        String user = jTFUser.getText();
+
+        if(!pass.isEmpty() && !user.isEmpty()){
+          
+                Admin objClient = adminServices.loginAdmin(user, pass);
+                if(objClient != null){
+                    JOptionPane.showMessageDialog(this, "Ha ingresado con éxito");
+                    this.dispose();
+
+                    JFrameMain jFrameMain = new JFrameMain();
+                    jFrameMain.setVisible(true);
+
+                }else{
+                    JOptionPane.showMessageDialog(this, "No existe un cliente asociado a esas credenciales");
+                }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        JFrameRegisterForm jFrameRegisterForm = new JFrameRegisterForm();
+        jFrameRegisterForm.setVisible(true);
+    }
+    
 
     /**
      * @param args the command line arguments

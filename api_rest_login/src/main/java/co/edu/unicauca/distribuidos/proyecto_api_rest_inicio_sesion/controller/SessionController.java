@@ -39,9 +39,9 @@ public class SessionController {
     }
 
     @GetMapping("/client/{login}/{password}")
-	public ClientDTO sessionClient(@PathVariable String login,@PathVariable String password) {
+	public ClientDTO sessionClient(@PathVariable String login, @PathVariable String password) {
 		ClientDTO client = null;		
-		client = sessionService.sessionClient(login,password);		
+		client = sessionService.sessionClient(login, password);		
 		return client;
 	}
 

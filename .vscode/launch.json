@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch JFrameMain",
+            "request": "launch",
+            "mainClass": "views.JFrameMain",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
+            "name": "Launch JFrameRegisterForm",
+            "request": "launch",
+            "mainClass": "views.JFrameRegisterForm",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
+            "name": "Launch JFrameLogin",
+            "request": "launch",
+            "mainClass": "views.JFrameLogin",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
             "name": "Launch JFrameRegisterForm",
             "request": "launch",
             "mainClass": "views.JFrameRegisterForm",

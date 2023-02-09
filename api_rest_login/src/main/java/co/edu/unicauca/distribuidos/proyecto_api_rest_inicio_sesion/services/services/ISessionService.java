@@ -9,7 +9,7 @@ public interface ISessionService {
     public List<AdminDTO> listAdmins();			
 	public ClientDTO registerClient(ClientDTO client);
     public AdminDTO registerAdmin(AdminDTO admin);	
-    public ClientDTO sessionClient(String login,String password);	
-    public AdminDTO sessionAdmin(String login,String password);
+    public ClientDTO sessionClient(String login, String password);	
+    public AdminDTO sessionAdmin(String login, String password);
 
 }

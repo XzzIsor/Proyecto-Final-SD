@@ -13,7 +13,7 @@ public class AdminDTO {
     private String name;	
     
     @NotNull(message = "{user.lastname.empty}")
-    @Size(min = 5, max =50, message = "Los nombres deben contener entre 5 y 50 caracteres")
+    @Size(min = 5, max =50, message = "Los apellidos deben contener entre 5 y 50 caracteres")
 	private String lastname;	
     
     @NotNull(message = "{user.login.empty}")
@@ -21,7 +21,7 @@ public class AdminDTO {
 	private String login;
 
     @NotNull(message = "{user.password.empty}")
-    @Size(min = 10, max =20, message = "La contrasena debe contener entre 10 y 20 caracteres")
+    @Size(min = 10, max =20, message = "La contraseña debe contener entre 10 y 20 caracteres")
 	private String password; 
     
     public AdminDTO(){

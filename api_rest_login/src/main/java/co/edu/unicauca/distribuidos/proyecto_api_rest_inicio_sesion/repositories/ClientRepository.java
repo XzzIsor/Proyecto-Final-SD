@@ -2,9 +2,7 @@ package co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.repositorie
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.models.ClientEntity;
 
 @Repository
@@ -28,16 +26,15 @@ public class ClientRepository {
 	}
 	
     public List<ClientEntity> getAll()
-   {
-	   System.out.println("Se ha invocando al método de listar clientes");
-	   return this.clientList;	
-   }
-
-
-   public ClientEntity authClient(String user,String password)
-   {
-	   System.out.println("Se ha invocando al login");
-       ClientEntity client=null;
+	{
+		System.out.println("Se ha invocando al método de listar clientes");
+		return this.clientList;	
+	}
+	
+	public ClientEntity authClient(String user, String password)
+	{
+		System.out.println("Se ha invocando al login");
+		ClientEntity client=null;
 		
 		for (ClientEntity objClient : clientList) {
 			if(objClient.getLogin().equals(user) && objClient.getPassword().equals(password))
@@ -52,14 +49,13 @@ public class ClientRepository {
 
     public ClientEntity register(ClientEntity newClient)	
 	{
-		 System.out.println("Se ha invocando al registrar");
-		 ClientEntity client=null;
-		 if (this.clientList.add(newClient))
-		 {
-            client=newClient;
-		 }
-		 
-		 return client;
+		System.out.println("Se ha invocando al registrar");
+		ClientEntity client=null;
+		if (this.clientList.add(newClient))
+		{
+			client = newClient;
+		}
+		return client;
 	}
 
 

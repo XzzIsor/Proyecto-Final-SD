@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class SessionServiceImpl implements ISessionService{
 
@@ -27,47 +26,45 @@ public class SessionServiceImpl implements ISessionService{
 
     @Override
     public List<ClientDTO> listClient() {
-        List<ClientEntity> clientEntity= this.cRepositoryAccess.getAll();
-		List<ClientDTO> clientDTO=this.modelMapper.map(clientEntity, new TypeToken<List<ClientDTO>>() {}.getType());
+        List<ClientEntity> clientEntity = this.cRepositoryAccess.getAll();
+		List<ClientDTO> clientDTO = this.modelMapper.map(clientEntity, new TypeToken<List<ClientDTO>>() {}.getType());
 		return clientDTO; 
     }
 
-
     @Override
     public ClientDTO registerClient(ClientDTO cliente) {
-        ClientEntity clientEntity=this.modelMapper.map(cliente, ClientEntity.class);
-		ClientEntity objClienteEntity= this.cRepositoryAccess.register(clientEntity);
-		ClientDTO clientDTO=this.modelMapper.map(objClienteEntity, ClientDTO.class);
+        ClientEntity clientEntity = this.modelMapper.map(cliente, ClientEntity.class);
+		ClientEntity objClienteEntity = this.cRepositoryAccess.register(clientEntity);
+		ClientDTO clientDTO = this.modelMapper.map(objClienteEntity, ClientDTO.class);
 		return clientDTO;	
     }
 
     @Override
     public ClientDTO sessionClient(String login, String contrasenia) {
-        ClientEntity objClienteEntity= this.cRepositoryAccess.authClient(login,contrasenia);
-		ClientDTO clientDTO=this.modelMapper.map(objClienteEntity, ClientDTO.class);
+        ClientEntity objClienteEntity = this.cRepositoryAccess.authClient(login,contrasenia);
+		ClientDTO clientDTO = this.modelMapper.map(objClienteEntity, ClientDTO.class);
 		return clientDTO;
     }
 
     @Override
     public List<AdminDTO> listAdmins() {
-        List<AdminEntity> adminEntity= this.aRepositoryAccess.findAll();
-		List<AdminDTO> adminDTO=this.modelMapper.map(adminEntity, new TypeToken<List<AdminDTO>>() {}.getType());
+        List<AdminEntity> adminEntity = this.aRepositoryAccess.findAll();
+		List<AdminDTO> adminDTO = this.modelMapper.map(adminEntity, new TypeToken<List<AdminDTO>>() {}.getType());
 		return adminDTO;
     }
 
     @Override
     public AdminDTO registerAdmin(AdminDTO administrador) {
-        AdminEntity adminEntity=this.modelMapper.map(administrador, AdminEntity.class);
-		AdminEntity objAdministradorEntity= this.aRepositoryAccess.register(adminEntity);
-		AdminDTO adminDTO=this.modelMapper.map(objAdministradorEntity, AdminDTO.class);
+        AdminEntity adminEntity = this.modelMapper.map(administrador, AdminEntity.class);
+		AdminEntity objAdministradorEntity = this.aRepositoryAccess.register(adminEntity);
+		AdminDTO adminDTO = this.modelMapper.map(objAdministradorEntity, AdminDTO.class);
 		return adminDTO;	
     }
 
     @Override
     public AdminDTO sessionAdmin(String login, String contrasenia) {
-        AdminEntity objAdministradorEntity= this.aRepositoryAccess.authAdmin(login,contrasenia);
-		AdminDTO adminDTO=this.modelMapper.map(objAdministradorEntity, AdminDTO.class);
+        AdminEntity objAdministradorEntity = this.aRepositoryAccess.authAdmin(login,contrasenia);
+		AdminDTO adminDTO = this.modelMapper.map(objAdministradorEntity, AdminDTO.class);
 		return adminDTO;
     }
- 
 }

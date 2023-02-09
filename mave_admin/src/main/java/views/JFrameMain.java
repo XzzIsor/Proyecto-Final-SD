@@ -4,17 +4,32 @@
  */
 package views;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import models.Product;
+import servicios.AdminServices;
+import servicios.ProductServices;
+
 /**
- *
- * @author angiecarolinagomezacosta
+ * @author juanruiz
+ * @author mafemartinez
+ * @author angiecgomez
  */
 public class JFrameMain extends javax.swing.JFrame {
+
+    AdminServices adminServices = new AdminServices();
+    ProductServices productServices = new ProductServices();
+    List<Product> productList = new ArrayList<Product>();
 
     /**
      * Creates new form JFrameMain
      */
     public JFrameMain() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -83,6 +98,12 @@ public class JFrameMain extends javax.swing.JFrame {
         btnListarP.setText("Listar");
         btnListarP.setActionCommand("");
 
+        btnListarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelListarPLayout = new javax.swing.GroupLayout(jPanelListarP);
         jPanelListarP.setLayout(jPanelListarPLayout);
         jPanelListarPLayout.setHorizontalGroup(
@@ -124,6 +145,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
         btnRegistrarP.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnRegistrarP.setText("Registrar");
+
+        btnRegistrarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelRegistrarPLayout = new javax.swing.GroupLayout(jPanelRegistrarP);
         jPanelRegistrarP.setLayout(jPanelRegistrarPLayout);
@@ -212,6 +239,12 @@ public class JFrameMain extends javax.swing.JFrame {
         btnListarS.setText("Listar");
         btnListarS.setActionCommand("");
 
+        btnListarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarSActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelListarSLayout = new javax.swing.GroupLayout(jPanelListarS);
         jPanelListarS.setLayout(jPanelListarSLayout);
         jPanelListarSLayout.setHorizontalGroup(
@@ -243,6 +276,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
         btnSubastar.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnSubastar.setText("Subastar");
+
+        btnSubastar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubastarActionPerformed(evt);
+            }
+        });
 
         btnCerrarS.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnCerrarS.setText("Cerrar Subasta");
@@ -310,7 +349,7 @@ public class JFrameMain extends javax.swing.JFrame {
         Inicio.addTab("Subastas", Subastas);
 
         jLabel6.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jLabel6.setText("¡Hasta Pronto!");
+        jLabel6.setText("¡Hasta Pronto :*!");
 
         javax.swing.GroupLayout CerrarSesiónLayout = new javax.swing.GroupLayout(CerrarSesión);
         CerrarSesión.setLayout(CerrarSesiónLayout);
@@ -352,6 +391,99 @@ public class JFrameMain extends javax.swing.JFrame {
     private void jTFCodigoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCodigoPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFCodigoPActionPerformed
+
+
+    private void btnRegistrarPActionPerformed(java.awt.event.ActionEvent evt){
+
+        if(!jTFNombreP.getText().isEmpty() && !jTFCodigoP.getText().isEmpty() && !jTFValorInicialP.getText().isEmpty()){
+            String name = jTFNombreP.getText();
+            int cod = Integer.parseInt(jTFCodigoP.getText());
+            int price = Integer.parseInt(jTFValorInicialP.getText());
+
+            Product newProduct = new Product(cod, name, "En stock", price);
+
+            Product response = productServices.registerProduct(newProduct);
+
+            if(response != null){
+                JOptionPane.showMessageDialog(this, "El nuevo producto se ha regitrado");
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese todos los campos pls >:c");
+        }
+    }
+
+    private void btnListarPActionPerformed(java.awt.event.ActionEvent evt){
+
+        productList = productServices.listAllProducts();
+
+        Object[] data = new Object[productList.size()];
+
+        for(int i = 0; i < productList.size(); i++){
+            data[i] = productList.get(i);
+        }
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                data
+            },
+            new String [] {
+                "Código", "Noombre", "Estado", "Valor Inicial"
+            }
+        ));
+    }
+
+    private void btnListarSActionPerformed(java.awt.event.ActionEvent evt){
+
+        productList = productServices.listAllProducts();
+
+        Object[] data = new Object[productList.size()];
+
+        for(int i = 0; i < productList.size(); i++){
+            data[i] = productList.get(i);
+        }
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                data
+            },
+            new String [] {
+                "Código", "Nombre", "Estado", "Valor Inicial"
+            }
+        ));
+    }
+
+    private void btnSubastarActionPerformed(java.awt.event.ActionEvent evt){
+        int id = Integer.parseInt(jTFCodP.getText());
+
+        Product product = productServices.findProductByID(id);
+        Product auctionProduct = productServices.getAuctionProduct();
+
+        if(product != null){
+            if(auctionProduct != null){
+                productServices.updateAuctionProduct(auctionProduct.getCod(), "Vendido", auctionProduct);
+                Product newAuctionProduct = productServices.updateAuctionProduct(id, "En Subasta", product);
+                if(newAuctionProduct != null){
+                    JOptionPane.showMessageDialog(this, "Actualización Exitosa");
+                }
+            }else{
+                Product newAuctionProduct = productServices.updateAuctionProduct(id, "En Subasta", product);
+                if(newAuctionProduct != null){
+                    JOptionPane.showMessageDialog(this, "Actualización Exitosa");
+                }
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese todos los campos porfi >:c");
+        }
+
+
+    }
+
+    
+
+
+
 
     /**
      * @param args the command line arguments

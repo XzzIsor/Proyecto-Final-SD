@@ -4,10 +4,6 @@
  */
 package models;
 
-/**
- *
- * @author William
- */
 public class ClientModel {
 
     private String name;

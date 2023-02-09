@@ -17,7 +17,7 @@ public class AdminEntity {
     @NotNull
     @Size(min = 5,max = 50)
 	private String lastname;
-    	
+
     @NotNull
     @Size(min = 10,max = 20)
 	private String login;

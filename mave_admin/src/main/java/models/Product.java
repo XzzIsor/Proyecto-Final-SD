@@ -10,12 +10,12 @@ public class Product {
     private Integer cod;
     private String name;
     private String state;
-    private Number value;
+    private int value;
 
     public Product() {
     }
 
-    public Product(Integer cod, String name, String state, Number value) {
+    public Product(Integer cod, String name, String state, int value) {
         this.cod = cod;
         this.name = name;
         this.state = state;
@@ -46,11 +46,11 @@ public class Product {
         this.state = state;
     }
 
-    public Number getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(Number value) {
+    public void setValue(int value) {
         this.value = value;
     }
     

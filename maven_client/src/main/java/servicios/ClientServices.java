@@ -13,14 +13,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.jackson.JacksonFeature;
-
 import models.ClientModel;
 import models.Product;
 
-/**
- *
- * @author William
- */
+
 public class ClientServices {
 
     private String url;
@@ -113,7 +109,7 @@ public class ClientServices {
 
         WebTarget target = this.cliente.target("http://localhost:5020/api/clients/offer" + "/" + offerValue);
 
-        Entity data = Entity.entity(product, MediaType.APPLICATION_JSON_TYPE);
+        Entity<Product> data = Entity.entity(product, MediaType.APPLICATION_JSON_TYPE);
 
         Invocation.Builder reponse = target.request(MediaType.APPLICATION_JSON_TYPE);
 

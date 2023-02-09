@@ -4,17 +4,26 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
+
+import models.Admin;
+import servicios.AdminServices;
+
 /**
  *
  * @author angiecarolinagomezacosta
  */
 public class JFrameRegisterForm extends javax.swing.JFrame {
 
+
+    AdminServices adminServices = new AdminServices();
+
     /**
      * Creates new form JFrameLogin
      */
     public JFrameRegisterForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -72,6 +81,12 @@ public class JFrameRegisterForm extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         jTFPassword.setText("Contraseña");
         jTFPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +155,41 @@ public class JFrameRegisterForm extends javax.swing.JFrame {
     private void jTFUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFUsuarioActionPerformed
+
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {
+        if(!jTFNombre.getText().isEmpty() && !jTFApellidos.getText().isEmpty() &&
+        !jTFPassword.getText().isEmpty() && !jTFUsuario.getText().isEmpty()){
+            if(jTFNombre.getText().length() > 5 && jTFNombre.getText().length() < 10){
+                if(jTFApellidos.getText().length() > 5 && jTFApellidos.getText().length() < 10){
+                        Admin newAdmin = new Admin(
+                        jTFNombre.getText(), 
+                        jTFApellidos.getText(), 
+                        jTFUsuario.getText(), 
+                        jTFPassword.getText());
+
+                        Admin client = adminServices.registerAdmin(newAdmin);
+
+                        if(client != null){
+                            JOptionPane.showMessageDialog(this, "Registro exitoso");
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error al registrarse");
+                        }
+                    
+                }else{
+                    JOptionPane.showMessageDialog(this, "El apellido debe contener entre 5 y 10 caracteres");
+                    jTFApellidos.setText("");
+                    jTFApellidos.requestFocus();
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "El nombre debe contener entre 5 y 10 caracteres");
+                jTFNombre.setText("");
+                jTFNombre.requestFocus();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Complete todos los campos pls");
+        }
+    }
 
     /**
      * @param args the command line arguments

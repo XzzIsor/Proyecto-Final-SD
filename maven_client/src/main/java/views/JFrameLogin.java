@@ -108,6 +108,12 @@ public class JFrameLogin extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         btnLogin.setText("Ingresar");
 
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCenLayout = new javax.swing.GroupLayout(jPanelCen);
         jPanelCen.setLayout(jPanelCenLayout);
         jPanelCenLayout.setHorizontalGroup(
@@ -154,7 +160,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFPasswordActionPerformed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
         String pass = jTFPassword.getText();
         String user = jTFUser.getText();
@@ -178,6 +184,13 @@ public class JFrameLogin extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        JFrameRegisterForm jFrameRegisterForm = new JFrameRegisterForm();
+        jFrameRegisterForm.setVisible(true);
+    }
+    
 
     /**
      * @param args the command line arguments

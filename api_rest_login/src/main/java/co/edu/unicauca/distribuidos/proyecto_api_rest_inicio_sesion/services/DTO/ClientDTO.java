@@ -1,4 +1,5 @@
 package co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.services.DTO;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -30,7 +31,7 @@ public class ClientDTO {
 	private String login;
     
     @NotNull(message = "{user.password.empty}")
-    @Size(min = 10, max =20, message = "La contrasena debe contener entre 10 y 20 caracteres")
+    @Size(min = 10, max =20, message = "La contraseña debe contener entre 10 y 20 caracteres")
 	private String password; 
 
     public ClientDTO(){
