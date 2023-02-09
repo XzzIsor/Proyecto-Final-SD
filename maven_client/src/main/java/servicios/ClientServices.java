@@ -23,7 +23,7 @@ public class ClientServices {
     private Client cliente;
 
     public ClientServices() {
-        this.url = "http://localhost:5000/api/clients";
+        this.url = "http://localhost:5000/api/client";
         this.cliente = ClientBuilder.newClient().register(new JacksonFeature());
     }
 
@@ -69,7 +69,7 @@ public class ClientServices {
     public Product findProduct(String nombre) {
         Product product = null;
 
-        WebTarget target = this.cliente.target("http://localhost:5020/api/clients/products/" + nombre);
+        WebTarget target = this.cliente.target("http://localhost:5020/api/client/products/" + nombre);
         
         Invocation.Builder response = target.request(MediaType.APPLICATION_JSON_TYPE);
 
@@ -81,7 +81,7 @@ public class ClientServices {
     public Product getAuctionProduct(){
          Product product = null;
 
-        WebTarget target = this.cliente.target("http://localhost:5020/api/clients/auction");
+        WebTarget target = this.cliente.target("http://localhost:5020/api/client/auction");
         
         Invocation.Builder response = target.request(MediaType.APPLICATION_JSON_TYPE);
 
@@ -93,7 +93,7 @@ public class ClientServices {
     public ArrayList<Product> listAllProducts() {
         ArrayList<Product> productList = null;
 
-        WebTarget target = this.cliente.target("http://localhost:5020/api/clients/products");
+        WebTarget target = this.cliente.target("http://localhost:5020/api/client/products");
 
         Invocation.Builder response = target.request(MediaType.APPLICATION_JSON);
 
@@ -103,11 +103,11 @@ public class ClientServices {
         return productList;
     }
 
-    public Product sendOffer(int offerValue, Product productAux){
+    public Product sendOffer(int value, Product productAux){
         
-        Product product = null;
+        Product product = productAux;
 
-        WebTarget target = this.cliente.target("http://localhost:5020/api/clients/offer" + "/" + offerValue);
+        WebTarget target = this.cliente.target("http://localhost:5020/api/client/offer/"  + value);
 
         Entity<Product> data = Entity.entity(product, MediaType.APPLICATION_JSON_TYPE);
 

@@ -85,7 +85,8 @@ public class JFrameMain extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
             },
             new String [] {
                 "Código", "Nombre", "Estado", "Valor Inicial"
@@ -421,7 +422,7 @@ public class JFrameMain extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int rows = productList.size();
 
-        for(int i = 0; i < rows; i++){
+        for(int i = 0; i < model.getRowCount(); i++){
             model.removeRow(0);
         }
 
@@ -442,20 +443,24 @@ public class JFrameMain extends javax.swing.JFrame {
 
         productList = productServices.listAllProducts();
 
-        Object[] data = new Object[productList.size()];
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        int rows = productList.size();
 
-        for(int i = 0; i < productList.size(); i++){
-            data[i] = productList.get(i);
+        for(int i = 0; i < model.getRowCount(); i++){
+            model.removeRow(0);
         }
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                data
-            },
-            new String [] {
-                "Código", "Nombre", "Estado", "Valor Inicial"
-            }
-        ));
+        for(int i = 0; i < rows; i++){
+            Product product = productList.get(i);
+            model.addRow(new Object []{
+                product.getCod(),
+                product.getName(),
+                product.getState(),
+                product.getValue(),
+
+            });
+        }
+
     }
 
     private void btnSubastarActionPerformed(java.awt.event.ActionEvent evt){
@@ -469,7 +474,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 productServices.updateAuctionProduct(auctionProduct.getCod(), "Vendido", auctionProduct);
                 Product newAuctionProduct = productServices.updateAuctionProduct(id, "En Subasta", product);
                 if(newAuctionProduct != null){
-                    JOptionPane.showMessageDialog(this, "Actualización Exitosa");
+                    JOptionPane.showMessageDialog(this, "La actualización fue Exitosa");
                 }
             }else{
                 Product newAuctionProduct = productServices.updateAuctionProduct(id, "En Subasta", product);

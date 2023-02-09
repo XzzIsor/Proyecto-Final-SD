@@ -50,13 +50,13 @@ public class ProductController {
 	}
 
 	
-	@GetMapping("/clients/products")
+	@GetMapping("/client/products")
 	public List<ProductDTO> listProducts() {
 		return productService.getProducts();
 	}
 
 	
-	@GetMapping("/clients/products/{name}")
+	@GetMapping("/client/products/{name}")
 	public ProductDTO showProductByName(@PathVariable String name) {
 		ProductDTO product = null;
 		product = productService.findProductByName(name);
@@ -64,7 +64,7 @@ public class ProductController {
 	}
 
 	
-	@GetMapping("/clients/auction")
+	@GetMapping("/client/auction")
 	public ProductDTO showAuction() {
 		ProductDTO product = null;
 		product = productService.getAuctionProduct();
@@ -72,7 +72,7 @@ public class ProductController {
 	}
 
 
-	@PutMapping("/clients/offer/{value}")
+	@PutMapping("/client/offer/{value}")
 	public ProductDTO offer(@PathVariable int value) {
 		ProductDTO actualProduct = null;
 		ProductDTO product = null;

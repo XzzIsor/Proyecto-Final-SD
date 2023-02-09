@@ -24,7 +24,7 @@ public class ClientDTO {
     private String email;
     
     @Pattern(message = "{user.telephone.pattern}",regexp="[5][0-9]{8}")
-	private String phone;	
+	private String cellphone;	
 	
     @NotNull(message = "{user.login.empty}")
     @Size(min = 10, max =20, message = "El login debe contener entre 10 y 20 caracteres")
