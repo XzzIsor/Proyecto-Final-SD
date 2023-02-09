@@ -7,6 +7,7 @@ package views;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import models.Product;
 import servicios.ClientServices;
@@ -42,7 +43,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         
                         productList = clientService.listAllProducts();
                         for (Product objProduct : productList) {
-                            if (objProduct.getStatus().equals("En subasta")) {
+                            if (objProduct.getState().equals("En subasta")) {
                                 flag = true;
                                 break;
                             }
@@ -54,7 +55,7 @@ public class JFrameMain extends javax.swing.JFrame {
                             if (product != null) {
                                 jTFCodP.setText(String.valueOf(product.getCod()));
                                 jTFNombreP.setText(product.getName());
-                                jTFEstadoP.setText(product.getStatus());
+                                jTFEstadoP.setText(product.getState());
                                 jTFValor.setText("$ " + String.valueOf(product.getValue()));
 
                             } else {
@@ -491,18 +492,23 @@ public class JFrameMain extends javax.swing.JFrame {
         productList = clientService.listAllProducts();
         Object[] data = new Object[productList.size()];
 
-        for(int i = 0; i < productList.size(); i++){
-            data[i] = productList.get(i);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int rows = model.getRowCount();
+
+        for(int i = 0; i < rows; i++){
+            model.removeRow(0);
         }
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                data
-            },
-            new String [] {
-                "Código", "Nombre", "Estado", "Valor Inicial"
-            }
-        ));
+        for(int i = 0; i < rows; i++){
+            Product product = productList.get(i);
+            model.addRow(new Object []{
+                product.getCod(),
+                product.getName(),
+                product.getState(),
+                product.getValue(),
+
+            });
+        }
 
     }//GEN-LAST:event_btnListarPActionPerformed
 
@@ -512,7 +518,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
             if(product != null){
                 jTFCodPr.setText(product.getCod().toString());
-                jTFEstadoPr.setText(product.getStatus());
+                jTFEstadoPr.setText(product.getState());
                 jTFValorInicialP.setText(String.valueOf(product.getValue()));
             }else{
                 JOptionPane.showMessageDialog(this, "El producto ingresado no existe");
@@ -530,7 +536,7 @@ public class JFrameMain extends javax.swing.JFrame {
         boolean flag = false;
 
         for(Product objProduct : productList){
-            if(objProduct.getStatus().equals("En Subasta")){
+            if(objProduct.getState().equals("En Subasta")){
                 flag = true;
                 break;
             }
@@ -542,7 +548,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 jTFNombreP.setText(auctionProduct.getName());
                 jTFCodP.setText(auctionProduct.getCod().toString());
                 jTFValor.setText(String.valueOf(auctionProduct.getValue()));
-                jTFEstadoP.setText(auctionProduct.getStatus());
+                jTFEstadoP.setText(auctionProduct.getState());
             }
             
         }else{
@@ -563,7 +569,7 @@ public class JFrameMain extends javax.swing.JFrame {
             }
             
             for(Product objProduct : productList){
-                if(objProduct.getStatus().equals("En Subasta")){
+                if(objProduct.getState().equals("En Subasta")){
                     flag = true;
                     break;
                 }
@@ -579,7 +585,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "La Puja ha sido aceptada");
                         jTFCodP.setText(String.valueOf(newProduct.getCod()));
                         jTFNombreP.setText(newProduct.getName());
-                        jTFEstadoP.setText(newProduct.getStatus());
+                        jTFEstadoP.setText(newProduct.getState());
                         jTFValor.setText("$ " + String.valueOf(newProduct.getValue()));
                         jTFValorPuja.setText("");
                     }else{

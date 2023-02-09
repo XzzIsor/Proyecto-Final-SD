@@ -179,41 +179,54 @@ public class JFrameRegisterForm extends javax.swing.JFrame {
         if(!jTFNombres.getText().isEmpty() && !jTFApellidos.getText().isEmpty() &&
         !jTFCorreo.getText().isEmpty() && !jTFPassword.getText().isEmpty() &&
         !jTFTelefono.getText().isEmpty() && !jTFUser.getText().isEmpty()){
-            if(jTFNombres.getText().length() > 5 && jTFNombres.getText().length() < 10){
-                if(jTFApellidos.getText().length() > 5 && jTFApellidos.getText().length() < 10){
-                    char num = jTFTelefono.getText().charAt(0);
-                    int number = Character.getNumericValue(num);
-                    if(number == 5 && jTFTelefono.getText().length() == 10){
-                        ClientModel newClient = new ClientModel(
-                        jTFNombres.getText(), 
-                        jTFApellidos.getText(), 
-                        jTFCorreo.getText(), 
-                        jTFTelefono.getText(), 
-                        jTFUser.getText(), 
-                        jTFPassword.getText());
-
-                        ClientModel client = clientServices.registerClient(newClient);
-
-                        if(client != null){
-                            JOptionPane.showMessageDialog(this, "Registro exitoso");
+            if(jTFUser.getText().length() > 10 && jTFUser.getText().length() < 20){
+                if(jTFPassword.getText().length() > 10 && jTFApellidos.getText().length() < 20){
+                    if(jTFNombres.getText().length() > 5 && jTFNombres.getText().length() < 50){
+                        if(jTFApellidos.getText().length() > 5 && jTFApellidos.getText().length() < 50){
+                            char num = jTFTelefono.getText().charAt(0);
+                            int number = Character.getNumericValue(num);
+                            if(number == 5 && jTFTelefono.getText().length() == 10){
+                                ClientModel newClient = new ClientModel(
+                                jTFNombres.getText(), 
+                                jTFApellidos.getText(), 
+                                jTFCorreo.getText(), 
+                                jTFTelefono.getText(), 
+                                jTFUser.getText(), 
+                                jTFPassword.getText());
+                                ClientModel client = clientServices.registerClient(newClient);
+        
+                                if(client != null){
+                                    JOptionPane.showMessageDialog(this, "Registro exitoso");
+                                }else{
+                                    JOptionPane.showMessageDialog(this, "Error al registrarse");
+                                }
+                            }else{
+                                JOptionPane.showMessageDialog(this, "El teléfono debe ser de 10 digitos y debe iniciar en 5");
+                                jTFTelefono.setText("");
+                                jTFTelefono.requestFocus();
+                            }
                         }else{
-                            JOptionPane.showMessageDialog(this, "Error al registrarse");
+                            JOptionPane.showMessageDialog(this, "El apellido debe contener entre 5 y 50 caracteres");
+                            jTFApellidos.setText("");
+                            jTFApellidos.requestFocus();
                         }
                     }else{
-                        JOptionPane.showMessageDialog(this, "El teléfono debe ser de 10 digitos y debe iniciar en 5");
-                        jTFTelefono.setText("");
-                        jTFTelefono.requestFocus();
+                        JOptionPane.showMessageDialog(this, "El nombre debe contener entre 5 y 50 caracteres");
+                        jTFNombres.setText("");
+                        jTFNombres.requestFocus();
                     }
                 }else{
-                    JOptionPane.showMessageDialog(this, "El apellido debe contener entre 5 y 10 caracteres");
-                    jTFApellidos.setText("");
-                    jTFApellidos.requestFocus();
+                    JOptionPane.showMessageDialog(this, "El contraseña debe contener entre 10 y 20 caracteres");
+                    jTFPassword.setText("");
+                    jTFPassword.requestFocus();
                 }
             }else{
-                JOptionPane.showMessageDialog(this, "El nombre debe contener entre 5 y 10 caracteres");
-                jTFNombres.setText("");
-                jTFNombres.requestFocus();
+                JOptionPane.showMessageDialog(this, "El usuario debe contener entre 10 y 20 caracteres");
+                jTFUser.setText("");
+                jTFUser.requestFocus();
             }
+
+            
         }else{
             JOptionPane.showMessageDialog(this, "Complete todos los campos pls");
         }

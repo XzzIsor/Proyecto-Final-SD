@@ -9,8 +9,8 @@ public class ProductEntity {
 
     private Integer cod;		
 	private String name;	
-	private String status;	
-	private int price;
+	private String state;	
+	private int value;
 
     public ProductEntity()
     {

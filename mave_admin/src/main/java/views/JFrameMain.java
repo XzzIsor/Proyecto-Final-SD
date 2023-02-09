@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import models.Product;
 import servicios.AdminServices;
@@ -417,20 +418,24 @@ public class JFrameMain extends javax.swing.JFrame {
 
         productList = productServices.listAllProducts();
 
-        Object[] data = new Object[productList.size()];
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int rows = productList.size();
 
-        for(int i = 0; i < productList.size(); i++){
-            data[i] = productList.get(i);
+        for(int i = 0; i < rows; i++){
+            model.removeRow(0);
         }
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                data
-            },
-            new String [] {
-                "Código", "Noombre", "Estado", "Valor Inicial"
-            }
-        ));
+        for(int i = 0; i < rows; i++){
+            Product product = productList.get(i);
+            model.addRow(new Object []{
+                product.getCod(),
+                product.getName(),
+                product.getState(),
+                product.getValue(),
+
+            });
+        }
+
     }
 
     private void btnListarSActionPerformed(java.awt.event.ActionEvent evt){

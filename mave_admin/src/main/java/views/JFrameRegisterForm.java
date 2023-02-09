@@ -160,8 +160,8 @@ public class JFrameRegisterForm extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {
         if(!jTFNombre.getText().isEmpty() && !jTFApellidos.getText().isEmpty() &&
         !jTFPassword.getText().isEmpty() && !jTFUsuario.getText().isEmpty()){
-            if(jTFNombre.getText().length() > 5 && jTFNombre.getText().length() < 10){
-                if(jTFApellidos.getText().length() > 5 && jTFApellidos.getText().length() < 10){
+            if(jTFNombre.getText().length() > 5 && jTFNombre.getText().length() < 50){
+                if(jTFApellidos.getText().length() > 5 && jTFApellidos.getText().length() < 50){
                         Admin newAdmin = new Admin(
                         jTFNombre.getText(), 
                         jTFApellidos.getText(), 
@@ -177,12 +177,12 @@ public class JFrameRegisterForm extends javax.swing.JFrame {
                         }
                     
                 }else{
-                    JOptionPane.showMessageDialog(this, "El apellido debe contener entre 5 y 10 caracteres");
+                    JOptionPane.showMessageDialog(this, "El apellido debe contener entre 5 y 50 caracteres");
                     jTFApellidos.setText("");
                     jTFApellidos.requestFocus();
                 }
             }else{
-                JOptionPane.showMessageDialog(this, "El nombre debe contener entre 5 y 10 caracteres");
+                JOptionPane.showMessageDialog(this, "El nombre debe contener entre 5 y 50 caracteres");
                 jTFNombre.setText("");
                 jTFNombre.requestFocus();
             }

@@ -7,7 +7,7 @@ package models;
 public class Product {
     private Integer cod;		
     private String name;
-    private String status;	
+    private String state;	
     private int value;
 
     public Product() {
@@ -16,7 +16,7 @@ public class Product {
     public Product(Integer cod, String name, String status, int value) {
         this.cod = cod;
         this.name = name;
-        this.status = status;
+        this.state = status;
         this.value = value;
     }
 
@@ -36,12 +36,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public String getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(String status) {
+        this.state = status;
     }
 
     public int getValue() {

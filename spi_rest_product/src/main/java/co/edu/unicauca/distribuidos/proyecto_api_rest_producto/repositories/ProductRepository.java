@@ -22,7 +22,7 @@ public class ProductRepository {
 		System.out.println("Se ha invocando al método listar Productos");
 		noSoldProductList = new ArrayList<ProductEntity>();
 		for (ProductEntity objProduct : productList) {
-			if (!objProduct.getStatus().equals("Vendido")) {
+			if (!objProduct.getState().equals("Vendido")) {
 				noSoldProductList.add(objProduct);
 			}
 		}
@@ -33,7 +33,7 @@ public class ProductRepository {
 		System.out.println("Se ha invocando al método listar Productos en oferta");
 		offerProductList = new ArrayList<ProductEntity>();
 		for (ProductEntity objProduct : productList) {
-			if (objProduct.getStatus().equals("En oferta")) {
+			if (objProduct.getState().equals("En oferta")) {
 				offerProductList.add(objProduct);
 			}
 		}
@@ -44,7 +44,7 @@ public class ProductRepository {
 		System.out.println("Se ha invocando al método de Producto en subasta");
 		ProductEntity product = null;
 		for (ProductEntity objProduct : productList) {
-			if (objProduct.getStatus().equals("En subasta")) {
+			if (objProduct.getState().equals("En subasta")) {
 				product = objProduct;
 				break;
 			} else {
