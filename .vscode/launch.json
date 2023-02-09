@@ -1,0 +1,80 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch JFrameRegisterForm",
+            "request": "launch",
+            "mainClass": "views.JFrameRegisterForm",
+            "projectName": "proyecto_maven_cliente"
+        },
+        {
+            "type": "java",
+            "name": "Launch JFrameLogin",
+            "request": "launch",
+            "mainClass": "views.JFrameLogin",
+            "projectName": "proyecto_maven_cliente"
+        },
+        {
+            "type": "java",
+            "name": "Launch JFrameMain",
+            "request": "launch",
+            "mainClass": "views.JFrameMain",
+            "projectName": "proyecto_maven_cliente"
+        },
+        {
+            "type": "java",
+            "name": "Launch FrmLogin",
+            "request": "launch",
+            "mainClass": "vista.FrmLogin",
+            "projectName": "proyecto_maven_cliente"
+        },
+        {
+            "type": "java",
+            "name": "Launch FrmLogin",
+            "request": "launch",
+            "mainClass": "vista.FrmLogin",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
+            "name": "Launch FrmPaginaPrincipal",
+            "request": "launch",
+            "mainClass": "vista.FrmPaginaPrincipal",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
+            "name": "Launch FrmRegistrarAdministrador",
+            "request": "launch",
+            "mainClass": "vista.FrmRegistrarAdministrador",
+            "projectName": "proyecto_maven_administrador"
+        },
+        {
+            "type": "java",
+            "name": "Launch FrmPaginaPrincipal",
+            "request": "launch",
+            "mainClass": "vista.FrmPaginaPrincipal",
+            "projectName": "proyecto_maven_cliente"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApiRestInicioSesionApplication<proyecto_api_rest_inicio_sesion>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.ProyectoApiRestInicioSesionApplication",
+            "projectName": "proyecto_api_rest_inicio_sesion",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApiRestProductoApplication<proyecto_api_rest_producto>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_api_rest_producto.ProyectoApiRestProductoApplication",
+            "projectName": "proyecto_api_rest_producto",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
